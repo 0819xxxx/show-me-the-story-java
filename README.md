@@ -1,6 +1,6 @@
 # Show Me The Story (Java) — AI 小说生成器
 
-> 基于 [show-me-the-story](https://github.com/Nigh/show-me-the-story) 的 Java 后端重写版本，将 Go 零依赖架构迁移至 Spring Boot。
+
 
 一个开箱即用的长篇小说 AI 创作工具。Spring Boot 后端 + Svelte 前端，连接任意 OpenAI 兼容 API（OpenAI、DeepSeek、本地 Ollama / LM Studio 等）即可自动生成大纲并逐章创作长篇小说。
 
@@ -194,17 +194,4 @@ src/main/resources/
 └── skills/                           # 内置技能定义（6 个 .md 文件）
 ```
 
-### 与原 Go 版本的差异
 
-| 项目 | Go 原版 | Java 版 |
-|------|---------|---------|
-| 运行时 | Go 二进制，零依赖 | JDK 17 + Spring Boot |
-| 构建 | `go build` | Maven + npm |
-| HTTP 框架 | 标准库 `net/http` | Spring MVC |
-| 前端嵌入 | `embed.FS` 编译进二进制 | `classpath:/static/` 打包进 JAR |
-| UI 主题 | 暖色调（粉红/紫/橙） | 深色极简蓝灰 |
-| 功能 | 完整 | 完整迁移 |
-
-## 致谢
-
-本项目后端代码从 [Nigh/show-me-the-story](https://github.com/Nigh/show-me-the-story) 的 Go 实现逐模块迁移而来，保留了完整的功能逻辑与业务架构。感谢原作者的出色工作。
