@@ -1,6 +1,7 @@
 @echo off
 chcp 65001 >nul 2>&1
 title Show Me The Story
+cd /d "%~dp0"
 
 echo ============================================
 echo   Show Me The Story - AI 小说生成器 (Java)
@@ -16,10 +17,20 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-:: Check if JAR exists
+:: Check if JAR exists and is a fat JAR (fat JAR should be > 10MB)
 set "JAR=target\show-me-the-story-1.0.0.jar"
-if not exist "%JAR%" (
-    echo [提示] 未找到 JAR 文件，开始编译...
+if exist "%JAR%" (
+    for %%A in ("%JAR%") do set "JARSIZE=%%~zA"
+) else (
+    set "JARSIZE=0"
+)
+
+if %JARSIZE% LSS 5000000 (
+    if "%JARSIZE%"=="0" (
+        echo [提示] 未找到 JAR 文件，开始编译...
+    ) else (
+        echo [提示] JAR 文件不完整，重新编译...
+    )
     echo.
     call :build
     if %errorlevel% neq 0 (
@@ -45,20 +56,21 @@ echo.
 start "" cmd /c "timeout /t 3 /nobreak >nul && start http://localhost:48090"
 
 :: Run the application
-java -jar "%JAR%" %*
+java -jar "%JAR%"
 goto :eof
 
 :build
-    :: Check Maven
+    :: Try system Maven first
     where mvn >nul 2>&1
     if %errorlevel% equ 0 (
         echo [编译] 使用系统 Maven 编译...
-        mvn package -Dexec.skip=true -q
+        mvn clean package -Dexec.skip=true
         exit /b %errorlevel%
     )
+    :: Try Maven Wrapper
     if exist "mvnw.cmd" (
         echo [编译] 使用 Maven Wrapper 编译...
-        call mvnw.cmd package -Dexec.skip=true -q
+        call mvnw.cmd clean package -Dexec.skip=true
         exit /b %errorlevel%
     )
     echo [错误] 未找到 Maven，请安装 Maven 3.9+
