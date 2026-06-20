@@ -96,7 +96,7 @@
     </div>
 
     <!-- Create new project -->
-    <div class="card bg-base-200 border border-base-content/8">
+    <div class="card bg-base-200 border border-base-300">
       <div class="card-body p-4">
         <h3 class="card-title text-sm">{$t('projects.create')}</h3>
         <input
@@ -142,7 +142,7 @@
     </div>
 
     <!-- Project list -->
-    <div class="card bg-base-200 border border-base-content/8">
+    <div class="card bg-base-200 border border-base-300">
       <div class="card-body p-4">
         <h3 class="card-title text-sm">{$t('projects.list')} <span class="text-xs font-normal text-base-content/40">({$projects.length})</span></h3>
         {#if $projects.length === 0}
@@ -158,7 +158,7 @@
                 class:ring-primary={$currentProject === p.name}
                 on:click={() => selectProject(p.name)}
               >
-                <div class="w-9 h-9 rounded-lg bg-base-300/50 text-primary flex items-center justify-center text-sm font-bold shrink-0">
+                <div class="w-9 h-9 rounded-lg bg-base-200 text-primary flex items-center justify-center text-sm font-bold shrink-0">
                   {(p.name || '?')[0]}
                 </div>
                 <div class="flex-1 min-w-0">

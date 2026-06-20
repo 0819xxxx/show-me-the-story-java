@@ -359,7 +359,7 @@
 <div class="space-y-3">
   <!-- API + Story Config: side by side -->
   <div class="grid grid-cols-2 gap-3">
-    <div class="card bg-base-200 border border-base-content/8">
+    <div class="card bg-base-200 border border-base-300">
       <div class="card-body p-4 gap-2">
         <h3 class="card-title text-base">{$t('config.api.title')}</h3>
         <div class="grid grid-cols-2 gap-x-3 gap-y-1.5">
@@ -401,7 +401,7 @@
       </div>
     </div>
 
-    <div class="card bg-base-200 border border-base-content/8">
+    <div class="card bg-base-200 border border-base-300">
       <div class="card-body p-4 gap-2">
         <h3 class="card-title text-base">{$t('config.story.title')}</h3>
         {#if hasAccepted}
@@ -435,7 +435,7 @@
   </div>
 
   <!-- Writing Style & POV -->
-  <div class="card bg-base-200 border border-base-content/8">
+  <div class="card bg-base-200 border border-base-300">
     <div class="card-body p-4 gap-2">
       <h3 class="card-title text-base">{$t('config.style.title')}</h3>
       <div>
@@ -453,7 +453,7 @@
   </div>
 
   <!-- Story Synopsis -->
-  <div class="card bg-base-200 border border-base-content/8">
+  <div class="card bg-base-200 border border-base-300">
     <div class="card-body p-4 gap-2">
       <h3 class="card-title text-base">{$t('config.synopsis.title')}</h3>
       <textarea class="textarea w-full h-40 text-base" bind:value={localStoryCfg.story_synopsis} placeholder={$t('config.synopsis.placeholder')} disabled={$taskRunning}></textarea>
@@ -464,7 +464,7 @@
   </div>
 
   <!-- Characters -->
-  <div class="card bg-base-200 border border-base-content/8">
+  <div class="card bg-base-200 border border-base-300">
     <div class="card-body p-4 gap-2">
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -479,7 +479,7 @@
           {:else}
             {#each chars as c}
               <div class="flex items-start gap-2.5 bg-base-300 rounded-lg p-2.5 group">
-                <div class="w-8 h-8 rounded-full bg-base-300/50 text-base-content flex items-center justify-center text-xs font-bold shrink-0">{c.name[0]}</div>
+                <div class="w-8 h-8 rounded-full bg-base-200 text-base-content flex items-center justify-center text-xs font-bold shrink-0">{c.name[0]}</div>
                 <div class="flex-1 min-w-0">
                   <div class="text-sm font-medium truncate">{c.name}</div>
                   <div class="text-xs text-base-content/40 line-clamp-1">{c.personality || c.background || c.age || ''}</div>
@@ -549,7 +549,7 @@
   </div>
 
   <!-- Worldview -->
-  <div class="card bg-base-200 border border-base-content/8">
+  <div class="card bg-base-200 border border-base-300">
     <div class="card-body p-4 gap-2">
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -572,7 +572,7 @@
           {:else}
             {#each filteredWvs as w}
               <div class="flex items-start gap-2.5 bg-base-300 rounded-lg p-2.5 group">
-                <div class="w-8 h-8 rounded-lg bg-base-300/50 text-base-content flex items-center justify-center text-xs font-bold shrink-0">{w.name[0]}</div>
+                <div class="w-8 h-8 rounded-lg bg-base-200 text-base-content flex items-center justify-center text-xs font-bold shrink-0">{w.name[0]}</div>
                 <div class="flex-1 min-w-0">
                   <div class="text-sm font-medium truncate">{w.name} <span class="text-xs font-normal text-base-content/30">[{catLabels[w.category] || w.category}]</span></div>
                   <div class="text-xs text-base-content/40 line-clamp-1">{w.description}</div>
@@ -630,7 +630,7 @@
   </div>
 
   <!-- Organizations -->
-  <div class="card bg-base-200 border border-base-content/8">
+  <div class="card bg-base-200 border border-base-300">
     <div class="card-body p-4 gap-2">
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -645,7 +645,7 @@
           {:else}
             {#each orgs as o}
               <div class="flex items-start gap-2.5 bg-base-300 rounded-lg p-2.5 group">
-                <div class="w-8 h-8 rounded-lg bg-base-300/50 text-base-content flex items-center justify-center text-xs font-bold shrink-0">{o.name[0]}</div>
+                <div class="w-8 h-8 rounded-lg bg-base-200 text-base-content flex items-center justify-center text-xs font-bold shrink-0">{o.name[0]}</div>
                 <div class="flex-1 min-w-0">
                   <div class="text-sm font-medium truncate">{o.name} {#if o.type}<span class="text-xs font-normal text-base-content/30">[{o.type}]</span>{/if}</div>
                   <div class="text-xs text-base-content/40 line-clamp-1">{o.description || ''}</div>
@@ -706,7 +706,7 @@
   </div>
 
   <!-- Relations -->
-  <div class="card bg-base-200 border border-base-content/8">
+  <div class="card bg-base-200 border border-base-300">
     <div class="card-body p-4 gap-2">
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <!-- svelte-ignore a11y-no-static-element-interactions -->

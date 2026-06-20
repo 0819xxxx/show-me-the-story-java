@@ -15,8 +15,8 @@
 {#if $confirmModal}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-static-element-interactions -->
-  <div class="fixed inset-0 z-[110] bg-base-200/80 backdrop-blur-sm flex items-center justify-center" on:click={cancel}>
-    <div class="bg-base-200 rounded-lg p-6 max-w-sm mx-4 border border-base-content/10" on:click|stopPropagation>
+  <div class="fixed inset-0 z-[110] bg-base-100/60 backdrop-blur-sm flex items-center justify-center" on:click={cancel}>
+    <div class="bg-base-200 rounded-lg p-6 max-w-sm mx-4 border border-base-300" on:click|stopPropagation>
       <p class="text-base mb-6">{$confirmModal.message}</p>
       <div class="flex justify-end gap-2">
         <button class="btn btn-ghost btn-sm" on:click={cancel}>{$t('common.cancel')}</button>

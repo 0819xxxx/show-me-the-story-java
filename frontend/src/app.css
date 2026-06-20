@@ -5,32 +5,32 @@
 @plugin "daisyui/theme" {
   name: "xianii";
   default: true;
-  color-scheme: dark;
-  --color-base-100: oklch(24% 0.008 260);
-  --color-base-200: oklch(19% 0.008 260);
-  --color-base-300: oklch(32% 0.012 260);
-  --color-base-content: oklch(92% 0.005 260);
-  --color-primary: oklch(72% 0.07 245);
-  --color-primary-content: oklch(18% 0.01 260);
-  --color-secondary: oklch(72% 0.05 270);
-  --color-secondary-content: oklch(18% 0.01 260);
-  --color-accent: oklch(72% 0.06 220);
-  --color-accent-content: oklch(18% 0.01 260);
-  --color-neutral: oklch(35% 0.015 260);
-  --color-neutral-content: oklch(92% 0.005 260);
-  --color-info: oklch(62% 0.08 240);
-  --color-info-content: oklch(18% 0.01 260);
-  --color-success: oklch(62% 0.09 160);
-  --color-success-content: oklch(18% 0.01 260);
-  --color-warning: oklch(72% 0.10 70);
-  --color-warning-content: oklch(18% 0.01 60);
-  --color-error: oklch(62% 0.12 25);
-  --color-error-content: oklch(18% 0.01 25);
-  --radius-selector: 0.25rem;
-  --radius-field: 0.25rem;
-  --radius-box: 0.25rem;
-  --size-selector: 0.2rem;
-  --size-field: 0.25rem;
+  color-scheme: light;
+  --color-base-100: oklch(97.5% 0.012 80);
+  --color-base-200: oklch(94% 0.014 78);
+  --color-base-300: oklch(89% 0.016 75);
+  --color-base-content: oklch(25% 0.02 55);
+  --color-primary: oklch(42% 0.06 55);
+  --color-primary-content: oklch(98% 0.005 80);
+  --color-secondary: oklch(55% 0.06 155);
+  --color-secondary-content: oklch(98% 0.005 155);
+  --color-accent: oklch(72% 0.08 80);
+  --color-accent-content: oklch(25% 0.03 55);
+  --color-neutral: oklch(35% 0.025 55);
+  --color-neutral-content: oklch(96% 0.005 80);
+  --color-info: oklch(58% 0.05 240);
+  --color-info-content: oklch(98% 0.005 240);
+  --color-success: oklch(55% 0.08 155);
+  --color-success-content: oklch(98% 0.005 155);
+  --color-warning: oklch(72% 0.10 85);
+  --color-warning-content: oklch(25% 0.04 55);
+  --color-error: oklch(55% 0.10 25);
+  --color-error-content: oklch(98% 0.005 25);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.3rem;
   --border: 1px;
   --depth: 0;
   --noise: 0;
@@ -50,62 +50,70 @@ html, body, #app {
 body {
   font-family: var(--font-sans);
   font-size: 15px;
+  background: var(--color-base-100);
 }
 
-/* ── Minimalist global overrides ── */
+/* ── Warm paper global overrides ── */
 
-/* Remove all shadows, use thin borders instead */
-.card, .btn, .dropdown-content, .modal-box, .alert, .tooltip {
+/* Soft warm shadows */
+.card {
+  box-shadow: 0 1px 3px oklch(35% 0.025 55 / 0.06), 0 1px 2px oklch(35% 0.025 55 / 0.04);
+  border: 1px solid oklch(89% 0.016 75 / 0.6);
+}
+.btn {
   box-shadow: none !important;
 }
-.card {
-  border: 1px solid oklch(35% 0.012 260 / 0.5);
+.dropdown-content, .modal-box {
+  box-shadow: 0 4px 12px oklch(35% 0.025 55 / 0.1), 0 1px 3px oklch(35% 0.025 55 / 0.06);
 }
 
-/* Thinner progress bars */
+/* Progress bars */
 .progress {
-  height: 4px;
+  height: 6px;
+  border-radius: 3px;
 }
 
-/* Subtler tabs */
+/* Tabs with warm tint */
 .tabs-boxed {
-  background: oklch(22% 0.008 260);
-  border: 1px solid oklch(35% 0.012 260 / 0.3);
+  background: oklch(94% 0.014 78);
+  border: 1px solid oklch(89% 0.016 75 / 0.5);
 }
 .tabs-boxed .tab-active {
-  background: oklch(30% 0.012 260);
+  background: oklch(97.5% 0.012 80);
+  color: var(--color-primary);
 }
 
-/* Subtler zebra striping */
+/* Zebra striping */
 .table-zebra tbody tr:nth-child(even) {
-  background: oklch(22% 0.008 260 / 0.5);
+  background: oklch(95.5% 0.013 79);
 }
 
-/* Chat bubbles with thin borders */
+/* Chat bubbles */
 .chat-bubble {
-  border: 1px solid oklch(35% 0.012 260 / 0.4);
+  border: 1px solid oklch(89% 0.016 75 / 0.5);
 }
 
-/* ── Scrollbar (4px, minimal) ── */
+/* ── Scrollbar (5px, warm) ── */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: color-mix(in oklch, var(--color-base-content) 15%, transparent);
-  border-radius: 2px;
+  background: oklch(75% 0.02 55 / 0.3);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in oklch, var(--color-base-content) 25%, transparent);
+  background: oklch(65% 0.03 55 / 0.4);
 }
 
 /* Chapter content white-space */
 .chapter-content {
   white-space: pre-wrap;
-  line-height: 1.8;
+  line-height: 1.9;
+  color: oklch(28% 0.02 55);
 }
 
 /* Markdown rendered content (chat bubbles) */
@@ -129,12 +137,13 @@ body {
 .md-body code {
   font-family: var(--font-mono);
   font-size: 0.85em;
-  background: color-mix(in oklch, var(--color-base-content) 12%, transparent);
+  background: oklch(93% 0.015 78);
   padding: 0.1em 0.35em;
   border-radius: 0.3em;
 }
 .md-body pre {
-  background: color-mix(in oklch, var(--color-base-100) 80%, black);
+  background: oklch(93% 0.015 78);
+  border: 1px solid oklch(89% 0.016 75 / 0.5);
   padding: 0.6em 0.8em;
   border-radius: 0.4em;
   overflow-x: auto;
@@ -145,7 +154,7 @@ body {
   padding: 0;
 }
 .md-body blockquote {
-  border-left: 3px solid color-mix(in oklch, var(--color-base-content) 25%, transparent);
+  border-left: 3px solid oklch(72% 0.04 55 / 0.4);
   padding-left: 0.7em;
   margin: 0.4em 0;
   opacity: 0.85;
@@ -156,7 +165,7 @@ body {
 }
 .md-body hr {
   border: none;
-  border-top: 1px solid color-mix(in oklch, var(--color-base-content) 15%, transparent);
+  border-top: 1px solid oklch(89% 0.016 75 / 0.6);
   margin: 0.6em 0;
 }
 .md-body table {
@@ -165,11 +174,11 @@ body {
   font-size: 0.92em;
 }
 .md-body th, .md-body td {
-  border: 1px solid color-mix(in oklch, var(--color-base-content) 20%, transparent);
+  border: 1px solid oklch(89% 0.016 75 / 0.6);
   padding: 0.25em 0.6em;
 }
 .md-body th {
-  background: color-mix(in oklch, var(--color-base-content) 8%, transparent);
+  background: oklch(94% 0.014 78);
 }
 
 /* Force graph canvas */
@@ -186,9 +195,9 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* Subtle fade-in animation (no overshoot) */
+/* Subtle fade-in animation */
 @keyframes bounce-in {
-  0% { transform: scale(0.96); opacity: 0; }
+  0% { transform: scale(0.97); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
 .animate-bounce-in {

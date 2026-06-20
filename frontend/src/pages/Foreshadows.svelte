@@ -231,7 +231,7 @@
 
 <div class="space-y-4">
   <!-- 统计与操作 -->
-  <div class="card bg-base-200 border border-base-content/8">
+  <div class="card bg-base-200 border border-base-300">
     <div class="card-body py-4 gap-3">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <h2 class="card-title text-base">{$t('fs.title')}</h2>
@@ -255,14 +255,14 @@
           <span class="badge badge-error">{$t('fs.stats.overdue', { n: overdueList.length })}</span>
         {/if}
       </div>
-      <p class="text-xs text-base-content/50">
+      <p class="text-xs text-base-content/65">
         {@html $t('fs.hint', { file: '<code class="text-xs">Foreshadows.md</code>' })}
       </p>
     </div>
   </div>
 
   {#if outlineReport?.has_conflicts}
-    <div class="card bg-warning/5 border border-warning/15">
+    <div class="card bg-warning/8 border border-warning/25">
       <div class="card-body py-4 gap-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <h3 class="font-semibold text-warning">{$t('fs.outlineConflict.title')}</h3>
@@ -276,10 +276,10 @@
         {/if}
         <div class="space-y-2 max-h-56 overflow-y-auto text-sm">
           {#each (outlineReport.conflicts || []) as c}
-            <div class="rounded-lg bg-base-300/50 p-3">
+            <div class="rounded-lg bg-base-200 p-3">
               <div class="font-medium">#{c.foreshadow_id} {c.foreshadow_name}</div>
-              <div class="text-base-content/70 mt-1">{c.description}</div>
-              <div class="text-xs text-base-content/50 mt-1">{$t('fs.outlineConflict.suggestedFix')}：{c.suggested_fix}</div>
+              <div class="text-base-content/80 mt-1">{c.description}</div>
+              <div class="text-xs text-base-content/65 mt-1">{$t('fs.outlineConflict.suggestedFix')}：{c.suggested_fix}</div>
             </div>
           {/each}
         </div>
@@ -289,18 +289,18 @@
 
   <!-- AI 建议确认 -->
   {#if $foreshadowShowSuggestions && $foreshadowSuggestions.length > 0}
-    <div class="card bg-base-200 border border-primary/15">
+    <div class="card bg-base-200 border border-primary/25">
       <div class="card-body py-4 gap-3">
         <h3 class="font-semibold">{$t('fs.suggestions.title', { n: $foreshadowSuggestions.length })}</h3>
-        <p class="text-sm text-base-content/60">{$t('fs.suggestions.hint')}</p>
+        <p class="text-sm text-base-content/75">{$t('fs.suggestions.hint')}</p>
         <div class="space-y-2 max-h-72 overflow-y-auto">
           {#each $foreshadowSuggestions as s, i}
-            <label class="flex gap-3 p-3 rounded-lg bg-base-300/50 cursor-pointer">
+            <label class="flex gap-3 p-3 rounded-lg bg-base-200 cursor-pointer">
               <input type="checkbox" class="checkbox checkbox-sm mt-1" bind:checked={s._selected} />
               <div class="min-w-0 flex-1">
                 <div class="font-medium">{s.name}</div>
-                <div class="text-sm text-base-content/70 mt-1">{s.description}</div>
-                <div class="text-xs text-base-content/50 mt-1">
+                <div class="text-sm text-base-content/80 mt-1">{s.description}</div>
+                <div class="text-xs text-base-content/65 mt-1">
                   {$t('fs.suggestions.line', { plant: s.plant_chapter, target: s.target_chapter })}
                 </div>
               </div>
@@ -337,8 +337,8 @@
   </div>
 
   {#if foreshadows.length === 0}
-    <div class="card bg-base-200 border border-base-content/8">
-      <div class="card-body items-center text-center py-12 text-base-content/50">
+    <div class="card bg-base-200 border border-base-300">
+      <div class="card-body items-center text-center py-12 text-base-content/65">
         <p>{$t('fs.empty.title')}</p>
         <p class="text-sm">{$t('fs.empty.hint')}</p>
       </div>
@@ -346,11 +346,11 @@
   {:else if viewMode === 'list'}
     <div class="grid gap-3">
       {#each foreshadows as fs}
-        <div class="card bg-base-200 border border-base-content/8">
+        <div class="card bg-base-200 border border-base-300">
           <div class="card-body py-4 gap-2">
             <div class="flex flex-wrap items-start justify-between gap-2">
               <div>
-                <span class="text-xs text-base-content/40 mr-2">#{fs.id}</span>
+                <span class="text-xs text-base-content/55 mr-2">#{fs.id}</span>
                 <span class="font-semibold">{fs.name}</span>
                 <span class="badge badge-sm ml-2 {statusMeta[fs.status]?.cls || 'badge-ghost'}">
                   {statusMeta[fs.status]?.label || fs.status}
@@ -361,8 +361,8 @@
                 <button class="btn btn-ghost btn-xs text-error" disabled={$taskRunning} on:click={() => deleteForeshadow(fs)}>{$t('common.delete')}</button>
               </div>
             </div>
-            <p class="text-sm text-base-content/70">{fs.description}</p>
-            <div class="text-xs text-base-content/50 flex flex-wrap gap-x-4 gap-y-1">
+            <p class="text-sm text-base-content/80">{fs.description}</p>
+            <div class="text-xs text-base-content/65 flex flex-wrap gap-x-4 gap-y-1">
               <span>{$t('fs.plant', { n: fs.plant_chapter })}</span>
               {#if fs.target_chapter > 0}
                 <span>{$t('fs.target', { n: fs.target_chapter })}</span>
@@ -370,16 +370,16 @@
             </div>
             {#if fs.events?.length}
               <div class="text-xs mt-1">
-                <div class="text-base-content/50 mb-1">{$t('fs.events.title')}</div>
+                <div class="text-base-content/65 mb-1">{$t('fs.events.title')}</div>
                 <ul class="space-y-0.5">
                   {#each fs.events as ev}
-                    <li class="text-base-content/70">{$t('fs.events.line', { chapter: ev.chapter, note: ev.note })}</li>
+                    <li class="text-base-content/80">{$t('fs.events.line', { chapter: ev.chapter, note: ev.note })}</li>
                   {/each}
                 </ul>
               </div>
             {/if}
             {#if fs.resolution}
-              <div class="text-xs text-success/80">{$t('fs.resolution', { text: fs.resolution })}</div>
+              <div class="text-xs text-success/90">{$t('fs.resolution', { text: fs.resolution })}</div>
             {/if}
           </div>
         </div>
@@ -388,7 +388,7 @@
   {:else if viewMode === 'timeline'}
     <div class="space-y-3">
       {#each timelineChapters as row}
-        <div class="card bg-base-200 border border-base-content/8">
+        <div class="card bg-base-200 border border-base-300">
           <div class="card-body py-3 gap-2">
             <h3 class="font-medium text-sm">{$t('fs.timeline.chapter', { num: row.num })}</h3>
             {#if row.plant.length}
@@ -409,9 +409,9 @@
             {/if}
             {#if row.events.length}
               <div class="text-xs space-y-1">
-                <span class="text-base-content/50">{$t('fs.timeline.events')}</span>
+                <span class="text-base-content/65">{$t('fs.timeline.events')}</span>
                 {#each row.events as item}
-                  <div class="pl-2 text-base-content/70">{$t('fs.timeline.eventLine', { id: item.foreshadow.id, name: item.foreshadow.name, note: item.event.note })}</div>
+                  <div class="pl-2 text-base-content/80">{$t('fs.timeline.eventLine', { id: item.foreshadow.id, name: item.foreshadow.name, note: item.event.note })}</div>
                 {/each}
               </div>
             {/if}
@@ -420,10 +420,10 @@
       {/each}
     </div>
   {:else}
-    <div class="card bg-base-200 border border-base-content/8">
+    <div class="card bg-base-200 border border-base-300">
       <div class="card-body py-4 gap-3">
         <div class="flex flex-wrap gap-2 justify-between items-center">
-          <span class="text-sm text-base-content/60">
+          <span class="text-sm text-base-content/75">
             {#if roadmapPath}{$t('fs.markdown.file', { name: roadmapPath.split('/').pop() })}{/if}
           </span>
           <div class="flex gap-2">
@@ -435,7 +435,7 @@
         {#if loadingRoadmap}
           <div class="flex justify-center py-8"><span class="loading loading-spinner loading-md"></span></div>
         {:else}
-          <pre class="text-xs whitespace-pre-wrap bg-base-300/50 rounded-lg p-4 max-h-[480px] overflow-y-auto">{roadmapMarkdown || $t('fs.markdown.empty')}</pre>
+          <pre class="text-xs whitespace-pre-wrap bg-base-200 rounded-lg p-4 max-h-[480px] overflow-y-auto">{roadmapMarkdown || $t('fs.markdown.empty')}</pre>
         {/if}
       </div>
     </div>

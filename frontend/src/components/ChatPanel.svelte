@@ -266,7 +266,7 @@
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-static-element-interactions -->
         <div
-          class="px-3 py-2 border-b border-base-content/5 cursor-pointer hover:bg-base-300 transition-colors flex items-center gap-2 group"
+          class="px-3 py-2 border-b border-base-300 cursor-pointer hover:bg-base-300 transition-colors flex items-center gap-2 group"
           class:bg-base-300={$currentChatSession?.id === s.id}
           on:click={() => selectSession(s.id)}
         >
@@ -288,7 +288,7 @@
     <div class="border-b border-base-content/10 shrink-0">
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <!-- svelte-ignore a11y-no-static-element-interactions -->
-      <div class="flex items-center gap-2 px-3 py-1.5 cursor-pointer hover:bg-base-300/50" on:click={() => taskStatusCollapsed = !taskStatusCollapsed}>
+      <div class="flex items-center gap-2 px-3 py-1.5 cursor-pointer hover:bg-base-200" on:click={() => taskStatusCollapsed = !taskStatusCollapsed}>
         {#if $taskRunning}
           <span class="loading loading-spinner loading-xs text-warning"></span>
         {:else}
@@ -305,7 +305,7 @@
           {#each taskLogs as entry}
             <div class="flex gap-2">
               <span class="text-base-content/30 shrink-0">{entry.time}</span>
-              <span class={entry.level === 'error' ? 'text-error/80' : entry.level === 'warn' ? 'text-warning/80' : entry.level === 'success' ? 'text-success/80' : 'text-base-content/60'}>{entry.msg}</span>
+              <span class={entry.level === 'error' ? 'text-error' : entry.level === 'warn' ? 'text-warning' : entry.level === 'success' ? 'text-success' : 'text-base-content/60'}>{entry.msg}</span>
             </div>
           {/each}
         </div>
@@ -332,15 +332,15 @@
       {#each msgs as m, msgIdx}
         {#if m.role === 'user'}
           <div class="chat chat-end">
-            <div class="chat-bubble bg-primary/15 border border-primary/20 text-sm whitespace-pre-wrap max-w-[85%]">{m.content}</div>
+            <div class="chat-bubble bg-primary/10 border border-primary/25 text-sm whitespace-pre-wrap max-w-[85%]">{m.content}</div>
             <div class="chat-footer text-xs text-base-content/30 mt-0.5">{fmtTime(m.timestamp)}</div>
           </div>
         {:else if m.role === 'assistant'}
           {#if m.tool_calls?.length > 0}
             {#each m.tool_calls as tc}
               <div class="chat chat-start">
-                <div class="chat-bubble text-xs font-mono max-w-[85%] {dangerTools.has(tc.name) ? 'bg-error/10 border border-error/20' : 'bg-base-300/50'}">
-                  <div class="{dangerTools.has(tc.name) ? 'text-error/80' : 'text-warning/80'} font-semibold mb-0.5">🔧 {toolLabel(tc.name)}</div>
+                <div class="chat-bubble text-xs font-mono max-w-[85%] {dangerTools.has(tc.name) ? 'bg-error/10 border border-error/20' : 'bg-base-200'}">
+                  <div class="{dangerTools.has(tc.name) ? 'text-error' : 'text-warning'} font-semibold mb-0.5">🔧 {toolLabel(tc.name)}</div>
                   {#if fmtArgs(tc.arguments)}
                     <div class="text-base-content/50 break-all">{fmtArgs(tc.arguments)}</div>
                   {/if}
@@ -352,7 +352,7 @@
             {#if isHallucinatedWait(m, msgs, msgIdx)}
               <div class="chat chat-start">
                 <div class="chat-bubble bg-warning/10 border border-warning/20 text-sm max-w-[85%]">
-                  <div class="text-warning/80 font-semibold mb-1">{$t('chat.assistant.maybeNoop')}</div>
+                  <div class="text-warning font-semibold mb-1">{$t('chat.assistant.maybeNoop')}</div>
                   <div class="text-base-content/70 md-body">{@html renderMarkdown(m.content)}</div>
                 </div>
               </div>
@@ -361,8 +361,8 @@
                 {#if seg.type === 'tool_call'}
                   {#if !m.tool_calls?.length}
                     <div class="chat chat-start">
-                      <div class="chat-bubble bg-base-300/50 text-xs font-mono max-w-[85%]">
-                        <div class="text-warning/80 font-semibold mb-0.5">🔧 {toolLabel(seg.name)}</div>
+                      <div class="chat-bubble bg-base-200 text-xs font-mono max-w-[85%]">
+                        <div class="text-warning font-semibold mb-0.5">🔧 {toolLabel(seg.name)}</div>
                         {#if fmtArgs(seg.args)}
                           <div class="text-base-content/50 break-all">{fmtArgs(seg.args)}</div>
                         {/if}
@@ -379,7 +379,7 @@
           {/if}
         {:else if m.role === 'tool'}
           <div class="chat chat-start">
-            <div class="chat-bubble bg-base-300/40 text-xs font-mono max-w-[85%]">
+            <div class="chat-bubble bg-base-200/80 text-xs font-mono max-w-[85%]">
               <details>
                 <summary class="text-info font-semibold cursor-pointer select-none">{$t('chat.tool.result')}</summary>
                 <div class="text-base-content/50 break-all mt-1 max-h-32 overflow-y-auto whitespace-pre-wrap">{toolResultText(m.tool_result, m.tool_result_key, m.tool_result_args)}</div>
@@ -391,12 +391,12 @@
 
       {#each pendingTools as tc}
         <div class="chat chat-start">
-          <div class="chat-bubble text-xs font-mono max-w-[85%] {dangerTools.has(tc.name) ? 'bg-error/10 border border-error/20' : 'bg-base-300/50'}">
+          <div class="chat-bubble text-xs font-mono max-w-[85%] {dangerTools.has(tc.name) ? 'bg-error/10 border border-error/20' : 'bg-base-200'}">
             {#if tc.status === 'running'}
-              <div class="text-warning/80 font-semibold mb-0.5">🔧 {toolLabel(tc.name)}</div>
-              <div class="text-warning/80 animate-pulse">{$t('chat.tool.running')}</div>
+              <div class="text-warning font-semibold mb-0.5">🔧 {toolLabel(tc.name)}</div>
+              <div class="text-warning animate-pulse">{$t('chat.tool.running')}</div>
             {:else}
-              <div class="text-success/80 font-semibold mb-0.5">✅ {toolLabel(tc.name)}</div>
+              <div class="text-success font-semibold mb-0.5">✅ {toolLabel(tc.name)}</div>
               {#if tc.result}
                 <div class="text-base-content/50 break-all max-h-20 overflow-y-auto">{tc.result ? (tc.result.length > 200 ? tc.result.slice(0, 200) + '...' : tc.result) : ''}</div>
               {/if}
@@ -409,8 +409,8 @@
         {#each parseContentSegments(streamingText) as seg}
           {#if seg.type === 'tool_call'}
             <div class="chat chat-start">
-              <div class="chat-bubble bg-base-300/50 text-xs font-mono max-w-[85%]">
-                <div class="text-warning/80 font-semibold mb-0.5">🔧 {toolLabel(seg.name)}</div>
+              <div class="chat-bubble bg-base-200 text-xs font-mono max-w-[85%]">
+                <div class="text-warning font-semibold mb-0.5">🔧 {toolLabel(seg.name)}</div>
                 {#if fmtArgs(seg.args)}
                   <div class="text-base-content/50 break-all">{fmtArgs(seg.args)}</div>
                 {/if}
@@ -429,7 +429,7 @@
   <!-- 失败重试 -->
   {#if $lastFailedTask && !$taskRunning}
     <div class="border-t border-error/20 bg-error/10 px-3 py-2 flex items-center gap-2 shrink-0">
-      <span class="text-sm text-error/80">❌ {$lastFailedTask.taskName}{$t('chat.failed.suffix')}</span>
+      <span class="text-sm text-error">❌ {$lastFailedTask.taskName}{$t('chat.failed.suffix')}</span>
       <div class="flex-1"></div>
       <button class="btn btn-error btn-outline btn-xs" on:click={retryTask}>{$t('chat.failed.retry')}</button>
       <button class="btn btn-ghost btn-xs" on:click={() => lastFailedTask.set(null)}>{$t('chat.failed.ignore')}</button>

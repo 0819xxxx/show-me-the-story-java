@@ -159,28 +159,28 @@
         if (!s || !t) continue;
         const connected = hov && (e.source === hov.id || e.target === hov.id);
         ctx.globalAlpha = hov && !connected ? 0.12 : 1;
-        ctx.strokeStyle = connected ? '#8ba4d4' : '#3d4555';
+        ctx.strokeStyle = connected ? '#a08965' : '#c4b89c';
         ctx.lineWidth = connected ? 2.5 : 1.5;
         ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(t.x, t.y); ctx.stroke();
         if (e.label) {
           const mx = (s.x + t.x) / 2, my = (s.y + t.y) / 2;
-          ctx.fillStyle = connected ? '#b8c4d8' : '#6b7588';
+          ctx.fillStyle = connected ? '#4a3d2e' : '#8a7d6b';
           ctx.font = connected ? 'bold 13px sans-serif' : '12px sans-serif';
           ctx.textAlign = 'center';
           ctx.fillText(e.label, mx, my - 5);
         }
       }
       ctx.globalAlpha = 1;
-      const colors = { character: '#6b8ec4', worldview: '#5d9e7a', organization: '#8a8eb0' };
+      const colors = { character: '#8b7355', worldview: '#6b8c6b', organization: '#9e8a6b' };
       for (const n of this.nodes) {
         const isHov = n === hov;
         const isNeighbor = neighborIds ? neighborIds.has(n.id) : false;
         ctx.globalAlpha = hov && !isHov && !isNeighbor ? 0.25 : 1;
-        ctx.fillStyle = colors[n.type] || '#6b8ec4';
+        ctx.fillStyle = colors[n.type] || '#8b7355';
         this.nodePath(ctx, n);
         ctx.fill();
         if (isHov || isNeighbor) {
-          ctx.strokeStyle = isHov ? '#c8d0e0' : 'rgba(200,208,224,0.35)';
+          ctx.strokeStyle = isHov ? '#5c4a35' : 'rgba(92,74,53,0.4)';
           ctx.lineWidth = isHov ? 3 : 2;
           this.nodePath(ctx, n, 3);
           ctx.stroke();
@@ -191,10 +191,10 @@
       }
       ctx.globalAlpha = 1;
       if (hov) {
-        ctx.fillStyle = 'rgba(22,24,32,0.9)'; ctx.font = '13px sans-serif';
+        ctx.fillStyle = 'rgba(245,240,230,0.95)'; ctx.font = '13px sans-serif';
         const tw = ctx.measureText(hov.label).width;
         ctx.fillRect(hov.x - tw / 2 - 7, hov.y - hov.r - 28, tw + 14, 22);
-        ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#4a3d2e'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         ctx.fillText(hov.label, hov.x, hov.y - hov.r - 17);
       }
       ctx.restore();
@@ -247,11 +247,11 @@
   }
 </script>
 
-<div bind:this={container} class="relative w-full bg-base-200 border border-base-content/5 rounded overflow-hidden" style="height:calc(100vh - 180px)">
+<div bind:this={container} class="relative w-full bg-base-200 border border-base-300 rounded overflow-hidden" style="height:calc(100vh - 180px)">
   <canvas bind:this={canvas}></canvas>
-  <div class="absolute bottom-3 right-3 bg-base-300 border border-base-content/5 rounded p-2 text-xs flex gap-4">
-    <span><span class="inline-block w-2.5 h-2.5 rounded-full bg-[#6b8ec4] mr-1 align-middle"></span>{$t('relations.legend.character')}</span>
-    <span><span class="inline-block w-2.5 h-2.5 rounded-full bg-[#5d9e7a] mr-1 align-middle"></span>{$t('relations.legend.worldview')}</span>
-    <span><span class="inline-block w-2.5 h-2.5 rounded-full bg-[#8a8eb0] mr-1 align-middle"></span>{$t('relations.legend.organization')}</span>
+  <div class="absolute bottom-3 right-3 bg-base-300 border border-base-300 rounded p-2 text-xs flex gap-4">
+    <span><span class="inline-block w-2.5 h-2.5 rounded-full bg-[#8b7355] mr-1 align-middle"></span>{$t('relations.legend.character')}</span>
+    <span><span class="inline-block w-2.5 h-2.5 rounded-full bg-[#6b8c6b] mr-1 align-middle"></span>{$t('relations.legend.worldview')}</span>
+    <span><span class="inline-block w-2.5 h-2.5 rounded-full bg-[#9e8a6b] mr-1 align-middle"></span>{$t('relations.legend.organization')}</span>
   </div>
 </div>

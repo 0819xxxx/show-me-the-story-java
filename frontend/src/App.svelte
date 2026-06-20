@@ -89,7 +89,7 @@
 
 <div class="flex flex-col h-screen bg-base-300 text-base-content overflow-hidden">
   <!-- Header -->
-  <header class="navbar bg-base-200 border-b border-base-content/10 px-6 min-h-[46px] shrink-0 gap-4">
+  <header class="navbar bg-base-200 border-b border-base-300 px-6 min-h-[46px] shrink-0 gap-4">
     <span class="text-lg font-semibold">{$t('app.title')}</span>
     {#if appVersion}
       <span class="badge badge-xs badge-ghost font-mono">{appVersion}</span>
@@ -142,9 +142,9 @@
   {:else}
     <div class="flex flex-1 overflow-hidden">
       <!-- Left: Nav + Content -->
-      <div class="flex flex-col w-1/2 min-w-[320px] border-r border-base-content/10 shrink-0">
+      <div class="flex flex-col w-1/2 min-w-[320px] border-r border-base-300 shrink-0">
         <!-- Nav -->
-        <nav class="flex bg-base-200 border-b border-base-content/10 px-3 py-2 shrink-0 gap-1">
+        <nav class="flex bg-base-200 border-b border-base-300 px-3 py-2 shrink-0 gap-1">
           {#each [
             ['config', '', 'nav.config'],
             ['outline', '', 'nav.outline'],
@@ -190,7 +190,7 @@
   <!-- Toasts -->
   <div class="fixed top-5 right-5 z-50 flex flex-col gap-2">
     {#each $toastStore as t (t.id)}
-      <div class="alert alert-sm {t.type === 'success' ? 'alert-success' : t.type === 'error' ? 'alert-error' : 'alert-info'} toast-enter border border-base-content/10 max-w-sm">
+      <div class="alert alert-sm {t.type === 'success' ? 'alert-success' : t.type === 'error' ? 'alert-error' : 'alert-info'} toast-enter border border-base-300 max-w-sm">
         <span>{t.msg}</span>
       </div>
     {/each}

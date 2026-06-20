@@ -121,9 +121,9 @@
 <div class="space-y-3">
   {#if !hasOutline}
     <!-- 空状态 -->
-    <div class="text-center py-14 text-base-content/50">
+    <div class="text-center py-14 text-base-content/65">
       <p class="text-base mb-1">{$t('outline.empty.title')}</p>
-      <p class="text-sm text-base-content/35 mb-6">{$t('outline.empty.hint')}</p>
+      <p class="text-sm text-base-content/50 mb-6">{$t('outline.empty.hint')}</p>
       <div class="flex justify-center gap-2">
         <button class="btn btn-primary btn-sm" on:click={generateOutline} disabled={$taskRunning}>{$t('outline.btn.generate')}</button>
         <button class="btn btn-ghost btn-sm" on:click={() => showImport = !showImport} disabled={$taskRunning}>{$t('outline.btn.import')}</button>
@@ -131,10 +131,10 @@
     </div>
 
     {#if showImport}
-      <div class="card bg-base-200 border border-base-content/8">
+      <div class="card bg-base-200 border border-base-300">
         <div class="card-body p-4 gap-2">
           <h3 class="card-title text-base">{$t('outline.import.title')}</h3>
-          <p class="text-xs text-base-content/50">{$t('outline.import.hint')}</p>
+          <p class="text-xs text-base-content/65">{$t('outline.import.hint')}</p>
           <textarea class="textarea w-full h-48 text-sm font-serif" bind:value={importContent} placeholder={$t('outline.import.placeholder')} disabled={$taskRunning}></textarea>
           <div class="flex justify-end gap-2">
             <button class="btn btn-ghost btn-xs" on:click={() => { showImport = false; importContent = ''; }}>{$t('common.cancel')}</button>
@@ -145,37 +145,37 @@
     {/if}
 
     {#if $continueAnalysis}
-      <div class="card bg-base-200 border border-base-content/8 border-primary/30">
+      <div class="card bg-base-200 border border-base-300 border-primary/30">
         <div class="card-body p-4 gap-2">
           <h3 class="card-title text-base">{$t('outline.analysis.title')}</h3>
           <div class="grid grid-cols-2 gap-2">
             <div>
-              <span class="text-xs text-base-content/50 mb-0.5 block">{$t('outline.analysis.fields.title')}</span>
+              <span class="text-xs text-base-content/65 mb-0.5 block">{$t('outline.analysis.fields.title')}</span>
               <input type="text" class="input input-sm w-full" bind:value={$continueAnalysis.title} disabled={$taskRunning} />
             </div>
             <div>
-              <span class="text-xs text-base-content/50 mb-0.5 block">{$t('outline.analysis.fields.type')}</span>
+              <span class="text-xs text-base-content/65 mb-0.5 block">{$t('outline.analysis.fields.type')}</span>
               <input type="text" class="input input-sm w-full" bind:value={$continueAnalysis.story_type} disabled={$taskRunning} />
             </div>
           </div>
           <div>
-            <span class="text-xs text-base-content/50 mb-0.5 block">{$t('outline.analysis.fields.synopsis')}</span>
+            <span class="text-xs text-base-content/65 mb-0.5 block">{$t('outline.analysis.fields.synopsis')}</span>
             <textarea class="textarea textarea-sm w-full h-20 text-sm" bind:value={$continueAnalysis.story_synopsis} disabled={$taskRunning}></textarea>
           </div>
           <div>
-            <span class="text-xs text-base-content/50 mb-0.5 block">{$t('outline.analysis.fields.style')}</span>
+            <span class="text-xs text-base-content/65 mb-0.5 block">{$t('outline.analysis.fields.style')}</span>
             <textarea class="textarea textarea-sm w-full h-16 text-sm" bind:value={$continueAnalysis.writing_style} disabled={$taskRunning}></textarea>
           </div>
           <div>
-            <span class="text-xs text-base-content/50 mb-0.5 block">{$t('outline.analysis.fields.pov')}</span>
+            <span class="text-xs text-base-content/65 mb-0.5 block">{$t('outline.analysis.fields.pov')}</span>
             <textarea class="textarea textarea-sm w-full h-16 text-sm" bind:value={$continueAnalysis.writing_pov} disabled={$taskRunning}></textarea>
           </div>
-          <div class="text-xs text-base-content/50">{$t('outline.analysis.detected', { n: $continueAnalysis.chapters?.length || 0 })}</div>
+          <div class="text-xs text-base-content/65">{$t('outline.analysis.detected', { n: $continueAnalysis.chapters?.length || 0 })}</div>
           <div class="max-h-48 overflow-y-auto space-y-1">
             {#each ($continueAnalysis.chapters || []) as ch}
               <div class="bg-base-300 rounded p-2 text-xs">
                 <span class="font-medium">{$t('outline.analysis.chapter', { num: ch.num, title: ch.title })}</span>
-                <span class="text-base-content/50">{ch.outline || ch.summary || ''}</span>
+                <span class="text-base-content/65">{ch.outline || ch.summary || ''}</span>
               </div>
             {/each}
           </div>
@@ -188,7 +188,7 @@
     {/if}
   {:else}
     <!-- 操作栏 -->
-    <div class="card bg-base-200 border border-base-content/8">
+    <div class="card bg-base-200 border border-base-300">
       <div class="card-body p-4 gap-2">
         <div class="flex items-center gap-2 flex-wrap">
           <h3 class="text-base font-semibold flex-1 min-w-0 truncate">{p.title || $t('common.untitled')}</h3>
@@ -213,7 +213,7 @@
           <div class="bg-base-300 rounded-lg p-3 space-y-2">
             <textarea class="textarea textarea-sm w-full h-20 text-sm" bind:value={reviseFeedback} placeholder={$t('outline.revise.placeholder')} disabled={$taskRunning}></textarea>
             <div class="flex justify-between items-center">
-              <span class="text-xs text-base-content/40">{$t('outline.revise.hint')}</span>
+              <span class="text-xs text-base-content/55">{$t('outline.revise.hint')}</span>
               <div class="flex gap-2">
                 <button class="btn btn-ghost btn-xs" on:click={() => { showRevise = false; reviseFeedback = ''; }}>{$t('common.cancel')}</button>
                 <button class="btn btn-primary btn-xs" on:click={reviseOutline} disabled={$taskRunning || !reviseFeedback.trim()}>{$t('outline.revise.submit')}</button>
@@ -224,13 +224,13 @@
 
         {#if p.core_prompt}
           <div>
-            <span class="text-xs text-base-content/50">{$t('outline.corePrompt')}</span>
+            <span class="text-xs text-base-content/65">{$t('outline.corePrompt')}</span>
             <div class="bg-base-300 rounded p-2 text-sm mt-0.5 max-h-24 overflow-y-auto">{p.core_prompt}</div>
           </div>
         {/if}
         {#if p.story_synopsis}
           <div>
-            <span class="text-xs text-base-content/50">{$t('outline.synopsis')}</span>
+            <span class="text-xs text-base-content/65">{$t('outline.synopsis')}</span>
             <div class="bg-base-300 rounded p-2 text-sm mt-0.5 max-h-24 overflow-y-auto">{p.story_synopsis}</div>
           </div>
         {/if}
@@ -238,18 +238,18 @@
     </div>
 
     <!-- 章节大纲列表 -->
-    <div class="card bg-base-200 border border-base-content/8">
+    <div class="card bg-base-200 border border-base-300">
       <div class="card-body p-4 gap-2">
         <div class="flex items-center justify-between">
-          <h4 class="text-sm font-semibold text-base-content/60">{$t('outline.chapterList')} <span class="font-normal text-base-content/35">{$t('outline.chapterList.summary', { total: chapters.length, suffix: pendingCount ? $t('outline.chapterList.pendingSuffix', { n: pendingCount }) : '' })}</span></h4>
-          <span class="text-xs text-base-content/35">{$t('outline.chapterList.editHint')}</span>
+          <h4 class="text-sm font-semibold text-base-content/60">{$t('outline.chapterList')} <span class="font-normal text-base-content/50">{$t('outline.chapterList.summary', { total: chapters.length, suffix: pendingCount ? $t('outline.chapterList.pendingSuffix', { n: pendingCount }) : '' })}</span></h4>
+          <span class="text-xs text-base-content/50">{$t('outline.chapterList.editHint')}</span>
         </div>
         <div class="space-y-1.5">
           {#each chapters as ch (ch.num)}
             {#if editingNum === ch.num}
-              <div class="bg-base-300 rounded-lg p-3 space-y-2 ring-1 ring-primary/20">
+              <div class="bg-base-300 rounded-lg p-3 space-y-2 ring-1 ring-primary/30">
                 <div class="flex items-center gap-2">
-                  <span class="text-sm font-bold text-base-content/50 shrink-0">{$t('outline.chapter.chapterLabel', { num: ch.num })}</span>
+                  <span class="text-sm font-bold text-base-content/65 shrink-0">{$t('outline.chapter.chapterLabel', { num: ch.num })}</span>
                   <input type="text" class="input input-sm flex-1" bind:value={editTitle} placeholder={$t('outline.chapter.titlePlaceholder')} disabled={$taskRunning} />
                 </div>
                 <textarea class="textarea textarea-sm w-full h-24 text-sm" bind:value={editOutline} placeholder={$t('outline.chapter.outlinePlaceholder')} disabled={$taskRunning}></textarea>
@@ -262,18 +262,18 @@
               <!-- svelte-ignore a11y-click-events-have-key-events -->
               <!-- svelte-ignore a11y-no-static-element-interactions -->
               <div
-                class="bg-base-300 rounded-lg p-2.5 group {ch.status === 'pending' && !$taskRunning ? 'cursor-pointer hover:ring-1 hover:ring-primary/20' : ''} transition-shadow"
+                class="bg-base-300 rounded-lg p-2.5 group {ch.status === 'pending' && !$taskRunning ? 'cursor-pointer hover:ring-1 hover:ring-primary/30' : ''} transition-shadow"
                 on:click={() => ch.status === 'pending' && !$taskRunning && startEdit(ch)}
               >
                 <div class="flex items-center gap-2">
-                  <span class="text-sm font-bold text-base-content/40 w-12 shrink-0">{ch.num}</span>
+                  <span class="text-sm font-bold text-base-content/55 w-12 shrink-0">{ch.num}</span>
                   <span class="text-sm font-medium flex-1 min-w-0 truncate">{ch.title}</span>
                   <span class="badge badge-xs {statusMeta[ch.status]?.cls || 'badge-ghost'}">{statusMeta[ch.status]?.label || ch.status}</span>
                   {#if ch.status === 'pending'}
                     <span class="text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity shrink-0">{$t('outline.chapter.editTag')}</span>
                   {/if}
                 </div>
-                <p class="text-xs text-base-content/50 mt-1 ml-14 line-clamp-2">{ch.outline}</p>
+                <p class="text-xs text-base-content/65 mt-1 ml-14 line-clamp-2">{ch.outline}</p>
               </div>
             {/if}
           {/each}
@@ -281,7 +281,7 @@
 
         {#if $streamingChapterIdx >= 0 && $streamingContent}
           <div class="bg-base-300 rounded p-3 mt-1 text-sm max-h-48 overflow-y-auto chapter-content">
-            <div class="text-xs text-base-content/40 mb-1 flex items-center gap-1">
+            <div class="text-xs text-base-content/55 mb-1 flex items-center gap-1">
               <span class="loading loading-dots loading-xs"></span> {$t('outline.streamHint')}
             </div>
             {$streamingContent}

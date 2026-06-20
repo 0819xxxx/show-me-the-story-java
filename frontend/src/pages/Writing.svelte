@@ -210,40 +210,40 @@
 </script>
 
 {#if !inWriting}
-  <div class="text-center py-16 text-base-content/50">
+  <div class="text-center py-16 text-base-content/65">
     <p class="text-base mb-1">{$t('writing.notReady.title')}</p>
-    <p class="text-sm text-base-content/35 mb-6">{$t('writing.notReady.hint')}</p>
+    <p class="text-sm text-base-content/50 mb-6">{$t('writing.notReady.hint')}</p>
     <button class="btn btn-primary btn-sm" on:click={() => window.location.hash = '#outline'}>{$t('writing.notReady.goto')}</button>
   </div>
 {:else}
   <div class="space-y-3">
     <!-- 进度 -->
-    <div class="card bg-base-200 border border-base-content/8">
+    <div class="card bg-base-200 border border-base-300">
       <div class="card-body p-4 gap-2">
         <div class="flex items-center gap-3">
           <h2 class="card-title text-base flex-1">{$t('writing.progress.title')}</h2>
           <label class="flex items-center gap-1.5 cursor-pointer" title={$t('writing.progress.autoConfirmTip')}>
             <input type="checkbox" class="toggle toggle-xs toggle-success" checked={$autoConfirm} on:change={toggleAutoConfirm} />
-            <span class="text-xs text-base-content/60">{$t('writing.progress.autoConfirm')}</span>
+            <span class="text-xs text-base-content/75">{$t('writing.progress.autoConfirm')}</span>
           </label>
-          <span class="text-xs text-base-content/40">{$t('writing.progress.totalWords', { n: totalWords.toLocaleString() })}</span>
+          <span class="text-xs text-base-content/55">{$t('writing.progress.totalWords', { n: totalWords.toLocaleString() })}</span>
           {#if accepted >= 2}
             <button class="btn btn-ghost btn-xs" on:click={smoothTransitions} disabled={$taskRunning} title={$t('writing.btn.smoothTransitions.tip')}>{$t('writing.btn.smoothTransitions')}</button>
           {/if}
           <button class="btn btn-ghost btn-xs" on:click={exportBook}>{$t('writing.btn.exportTxt')}</button>
         </div>
         <progress class="progress progress-primary w-full" value={pct} max="100"></progress>
-        <div class="text-sm text-base-content/50">{$t('writing.progress.acceptedSummary', { pct, accepted, total })}</div>
+        <div class="text-sm text-base-content/65">{$t('writing.progress.acceptedSummary', { pct, accepted, total })}</div>
       </div>
     </div>
 
     {#if writingConflict}
-      <div class="card bg-error/5 border border-error/15">
+      <div class="card bg-error/8 border border-error/20">
         <div class="card-body p-4 gap-3">
           <h3 class="font-semibold text-error">{$t('writing.conflict.title')}</h3>
           <p class="text-sm">{$t('writing.conflict.summary')}：{writingConflict.summary}</p>
           {#if writingConflict.issues?.length}
-            <div class="text-xs text-base-content/70">
+            <div class="text-xs text-base-content/80">
               <div class="font-medium mb-1">{$t('writing.conflict.issues')}</div>
               <ul class="list-disc list-inside space-y-0.5">
                 {#each writingConflict.issues as issue}
@@ -271,7 +271,7 @@
     {/if}
 
     {#if foreshadows.length > 0}
-      <div class="card bg-base-200 border border-base-content/8">
+      <div class="card bg-base-200 border border-base-300">
         <div class="card-body p-4 gap-2">
           <div class="flex items-center justify-between gap-2">
             <h3 class="font-medium text-sm">{$t('writing.fs.title')}</h3>
@@ -290,14 +290,14 @@
           {#if fsOverdue.length > 0}
             <p class="text-xs text-warning">{$t('writing.fs.overdueDetail', { names: fsOverdue.map(f => `#${f.id} ${f.name}`).join(', ') })}</p>
           {:else if fsNearTarget.length > 0}
-            <p class="text-xs text-base-content/50">{$t('writing.fs.nearDetail', { names: fsNearTarget.map(f => f.name).join(', ') })}</p>
+            <p class="text-xs text-base-content/65">{$t('writing.fs.nearDetail', { names: fsNearTarget.map(f => f.name).join(', ') })}</p>
           {/if}
         </div>
       </div>
     {:else}
-      <div class="card bg-base-200 border border-base-content/8">
+      <div class="card bg-base-200 border border-base-300">
         <div class="card-body p-4 flex items-center justify-between gap-2">
-          <p class="text-sm text-base-content/50">{$t('writing.fs.none')}</p>
+          <p class="text-sm text-base-content/65">{$t('writing.fs.none')}</p>
           <button class="btn btn-ghost btn-xs" on:click={() => window.location.hash = '#foreshadows'}>{$t('writing.fs.setup')}</button>
         </div>
       </div>
@@ -308,13 +308,13 @@
     <!-- 章节区 -->
     <div class="grid grid-cols-[230px_1fr] gap-3" style="min-height:400px">
       <!-- 章节列表 -->
-      <div class="card bg-base-200 border border-base-content/8 overflow-y-auto max-h-[calc(100vh-280px)]">
+      <div class="card bg-base-200 border border-base-300 overflow-y-auto max-h-[calc(100vh-280px)]">
         <ul class="menu menu-sm p-0 w-full">
           {#each chapters as c, i}
             <li>
               <button class="flex gap-2 items-center {$selectedChapter === i ? 'active' : ''}" on:click={() => selectChapter(i)}>
                 <span class="w-2 h-2 rounded-full shrink-0 {statusMeta[c.status]?.dot || ''}"></span>
-                <span class="text-base-content/50 w-6 shrink-0 text-right">{c.num}</span>
+                <span class="text-base-content/65 w-6 shrink-0 text-right">{c.num}</span>
                 <span class="flex-1 text-left truncate text-sm">{c.title}</span>
                 {#if i === currentIdx && c.status !== 'accepted'}
                   <span class="badge badge-primary badge-xs shrink-0">{$t('writing.tag.current')}</span>
@@ -328,47 +328,47 @@
       <!-- 内容区 -->
       <div class="min-w-0">
         {#if ch}
-          <div class="card bg-base-200 border border-base-content/8">
+          <div class="card bg-base-200 border border-base-300">
             <div class="card-body p-4 gap-2">
               <div class="flex items-center gap-2 flex-wrap">
                 <h2 class="card-title text-base flex-1 min-w-0">{$t('writing.chapter.title', { num: ch.num, title: ch.title })}</h2>
                 <span class="badge badge-sm {statusMeta[ch.status]?.cls || 'badge-ghost'}">{statusMeta[ch.status]?.label || ch.status}</span>
                 {#if showTaskTokens}
-                  <TaskTokenBadge className="text-xs text-base-content/40 font-mono" />
+                  <TaskTokenBadge className="text-xs text-base-content/55 font-mono" />
                 {:else if chapterWordCount > 0}
-                  <span class="text-xs text-base-content/40">{$t('writing.chapter.words', { n: chapterWordCount.toLocaleString() })}</span>
+                  <span class="text-xs text-base-content/55">{$t('writing.chapter.words', { n: chapterWordCount.toLocaleString() })}</span>
                 {/if}
               </div>
 
               {#if ch.outline}
                 <details class="bg-base-300 rounded">
-                  <summary class="p-2 text-xs text-base-content/50 cursor-pointer select-none">{$t('writing.chapter.outline')}</summary>
-                  <div class="px-2 pb-2 text-sm text-base-content/70">{ch.outline}</div>
+                  <summary class="p-2 text-xs text-base-content/65 cursor-pointer select-none">{$t('writing.chapter.outline')}</summary>
+                  <div class="px-2 pb-2 text-sm text-base-content/80">{ch.outline}</div>
                 </details>
               {/if}
 
               {#if ch.summary}
                 <details class="bg-base-300 rounded">
-                  <summary class="p-2 text-xs text-base-content/50 cursor-pointer select-none">{$t('writing.chapter.summary')}</summary>
-                  <div class="px-2 pb-2 text-sm text-base-content/70 whitespace-pre-wrap">{ch.summary}</div>
+                  <summary class="p-2 text-xs text-base-content/65 cursor-pointer select-none">{$t('writing.chapter.summary')}</summary>
+                  <div class="px-2 pb-2 text-sm text-base-content/80 whitespace-pre-wrap">{ch.summary}</div>
                 </details>
               {/if}
 
               {#if displayContent}
                 {#if isStreamingThis}
-                  <div class="text-xs text-warning/80 flex items-center gap-1.5">
+                  <div class="text-xs text-warning/90 flex items-center gap-1.5">
                     <span class="loading loading-dots loading-xs"></span>
                     {$t('writing.chapter.streamHint')}
                   </div>
                 {/if}
-                <div bind:this={contentEl} class="bg-base-300 rounded-lg p-4 text-[15px] chapter-content reading-area max-h-[calc(100vh-420px)] min-h-[200px] overflow-y-auto border border-base-content/8">
+                <div bind:this={contentEl} class="bg-base-300 rounded-lg p-4 text-[15px] chapter-content reading-area max-h-[calc(100vh-420px)] min-h-[200px] overflow-y-auto border border-base-300">
                   {displayContent}
                   {#if isStreamingThis}
                     <span class="inline-block w-2 h-4 bg-primary/70 animate-pulse ml-0.5 align-text-bottom"></span>
                   {/if}
                 </div>
               {:else if ch.status === 'pending'}
-                <div class="bg-base-300 rounded-lg p-6 text-center text-sm text-base-content/40">
+                <div class="bg-base-300 rounded-lg p-6 text-center text-sm text-base-content/55">
                   {#if isCurrent}
                     {$t('writing.chapter.pendingCurrent')}
                   {:else}
@@ -408,7 +408,7 @@
                     disabled={$taskRunning}
                   ></textarea>
                   <div class="flex justify-between items-center">
-                    <span class="text-xs text-base-content/40">
+                    <span class="text-xs text-base-content/55">
                       {#if !(isCurrent && ch.status === 'review')}
                         {$t('writing.revise.hintTargeted')}
                       {:else}
@@ -425,7 +425,7 @@
             </div>
           </div>
         {:else}
-          <div class="text-center py-16 text-base-content/50 text-base">{$t('writing.emptySelection')}</div>
+          <div class="text-center py-16 text-base-content/65 text-base">{$t('writing.emptySelection')}</div>
         {/if}
       </div>
     </div>

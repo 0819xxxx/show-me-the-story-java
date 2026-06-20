@@ -17,7 +17,7 @@
   }
 </script>
 
-<div class="card bg-base-200 border border-base-content/8">
+<div class="card bg-base-200 border border-base-300">
   <div class="card-body">
     <h2 class="card-title">{$t('skills.title')}</h2>
     <p class="text-sm text-base-content/60 mb-3">{$t('skills.intro')}</p>

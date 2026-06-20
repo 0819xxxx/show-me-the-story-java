@@ -153,7 +153,7 @@
 </script>
 
 {#if bookComplete}
-  <div class="card bg-base-200 border border-base-content/8">
+  <div class="card bg-base-200 border border-base-300">
     <div class="card-body p-4 gap-3">
       <div class="flex items-center gap-2 flex-wrap">
         <h2 class="card-title text-base flex-1">{$t('pp.title')}</h2>
@@ -184,7 +184,7 @@
           <button class="tab {reportTab === 'diagnosis' ? 'tab-active' : ''}" on:click={() => reportTab = 'diagnosis'}>{$t('pp.tab.diagnosis')}</button>
           <button class="tab {reportTab === 'consistency' ? 'tab-active' : ''}" on:click={() => reportTab = 'consistency'}>{$t('pp.tab.consistency')}</button>
         </div>
-        <div class="bg-base-300 border border-base-content/8 rounded-lg p-3 max-h-64 overflow-y-auto text-sm">
+        <div class="bg-base-300 border border-base-300 rounded-lg p-3 max-h-64 overflow-y-auto text-sm">
           {#if reportTab === 'diagnosis' && diagnosisHtml}
             <div class="md-body">{@html diagnosisHtml}</div>
           {:else if reportTab === 'consistency' && consistencyHtml}
@@ -219,7 +219,7 @@
           </button>
         </div>
 
-        <div class="overflow-x-auto max-h-80 overflow-y-auto rounded border border-base-content/8">
+        <div class="overflow-x-auto max-h-80 overflow-y-auto rounded border border-base-300">
           <table class="table table-xs table-zebra">
             <thead class="sticky top-0 bg-base-200 z-10">
               <tr>
@@ -280,11 +280,11 @@
       <div class="grid grid-cols-2 gap-3 text-sm">
         <div>
           <div class="text-xs text-base-content/50 mb-1">{$t('pp.diff.before')}</div>
-          <div class="bg-base-300 border border-base-content/8 rounded p-3 whitespace-pre-wrap max-h-64 overflow-y-auto font-serif">{diffItem.diff_original || '—'}</div>
+          <div class="bg-base-300 border border-base-300 rounded p-3 whitespace-pre-wrap max-h-64 overflow-y-auto font-serif">{diffItem.diff_original || '—'}</div>
         </div>
         <div>
           <div class="text-xs text-base-content/50 mb-1">{$t('pp.diff.after')}</div>
-          <div class="bg-base-300 border border-base-content/8 rounded p-3 whitespace-pre-wrap max-h-64 overflow-y-auto font-serif">{diffItem.diff_revised || '—'}</div>
+          <div class="bg-base-300 border border-base-300 rounded p-3 whitespace-pre-wrap max-h-64 overflow-y-auto font-serif">{diffItem.diff_revised || '—'}</div>
         </div>
       </div>
       <div class="modal-action">
