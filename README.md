@@ -151,7 +151,7 @@ planted（已埋设）→ progressing（推进中）→ resolved（已回收）
 ### 技术栈
 
 - **后端**：Spring Boot 3.4.1 + JDK 17，Maven 构建
-- **前端**：Vite 5 + Svelte 4 + Tailwind CSS 4 + DaisyUI 5（深色极简蓝灰主题）
+- **前端**：Vite 5 + Svelte 4 + Tailwind CSS 4 + DaisyUI 5（暖光纸质主题，米白/奶油色底，咖啡棕/鼠尾草绿/蜂蜜金点缀）
 - **通信**：REST API + SSE 实时事件流
 
 ### 编译
