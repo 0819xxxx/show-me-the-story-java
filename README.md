@@ -40,6 +40,15 @@
 
 ### 3. 运行
 
+**一键启动（推荐）：**
+
+- Windows：双击 `start.bat`
+- macOS / Linux：终端运行 `./start.sh`
+
+脚本会自动检测 Java 环境，若 JAR 不存在则自动编译，启动后自动打开浏览器。
+
+**或手动启动：**
+
 ```bash
 java -jar show-me-the-story-1.0.0.jar            # 数据保存在当前目录
 java -jar show-me-the-story-1.0.0.jar ~/novels    # 或指定一个数据目录
